@@ -52,8 +52,8 @@ const Hero = () => (
       <Image 
         src={IMAGES.HERO}
         alt={"Hero image"}
-        width={300}
-        height={500}
+        width={1200}
+        height={900}
       />
     </div>
   </div>
