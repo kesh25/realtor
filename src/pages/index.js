@@ -1,4 +1,5 @@
 import Link from "next/link"; 
+import {motion} from "framer-motion"; 
 
 import {BiMapPin} from 'react-icons/bi';
 import {BsFillBuildingFill}  from "react-icons/bs"; 
@@ -37,25 +38,38 @@ export default function Home() {
   )
 }
 
+// 
+const transition  = {type: "spring", duration: 2}
 // hero
 const Hero = () => (
   <div className={styles.hero}>
-    <div className={styles.hero_text}>
+    <motion.div 
+      className={styles.hero_text}
+      initial={{opacity: 0, x: -100}}
+      animate={{opacity: 1, x: 0}}
+      exit={{opacity: 0, x: -100}}
+      transition={{...transition, duration: 2}}
+      >
       <h1 >Looking for <br /> your next home?</h1>
       <p className={styles.para}>Whether you are looking to rent or buy, our catalogue will help you help you find a place to call home.</p>
       <AlternateButton 
         text="View Catalog"
         link="/properties"
       />
-    </div>
-    <div className={styles.hero_image}>
+    </motion.div>
+    <motion.div 
+      className={styles.hero_image}
+      initial={{left: '238px'}}
+      whileInView={{left: '8px'}}
+      transition={{...transition}}
+    >
       <Image 
         src={IMAGES.HERO}
         alt={"Hero image"}
         width={1200}
         height={900}
       />
-    </div>
+    </motion.div>
   </div>
 );
 const AlternateButton = ({text, link}) => <Link href={link} className={styles.hero_btn}>{text}</Link>
@@ -114,7 +128,12 @@ const Featured = ({item}) => (
     <div className={styles.images}>
       {
         item.images.map((img, index) => (
-          <div 
+          <motion.div 
+            initial={{opacity: 1, x: 100 + (index * 30)}}
+            whileInView={{opacity: 1, x: 0}}
+            exit={{opacity: 0, x: -100}}
+            transition={{...transition, duration: 3 + (index * 0.04)}}
+
             className={styles.featured_image} 
             key={index} 
             style={{
@@ -127,7 +146,7 @@ const Featured = ({item}) => (
               width={300}
               height={400}
             />
-          </div>
+          </motion.div>
         ))
       }
     </div>
@@ -136,8 +155,13 @@ const Featured = ({item}) => (
 ); 
 
 const Features = ({item}) => (
-  <div className={styles.details_featured}>
-      {item && <h2>{item.title}</h2>}
+  <div 
+      className={styles.details_featured}
+      
+  >
+      {item && <motion.h2
+        
+      >{item.title}</motion.h2>}
       {item.price && <h3>{item.price}</h3>}
       {item.context && <p>{item.context}</p>}
       <div className={styles.features}>
@@ -185,7 +209,14 @@ const getIcon = (item) => {
 // minor banner
 const MidBanner = () => (
   <div className={styles.mid_banner}>
-    <div className={styles.text__banner}>
+    <motion.div 
+      className={styles.text__banner}
+      initial={{width: 0}}
+      whileInView={{width: "30%"}}
+      exit={{width: 0}}
+      transition={{...transition}}
+      // style={{display: "none"}}
+    >
       <h2>Find 
       <br />your next home
       <br />
@@ -195,13 +226,22 @@ const MidBanner = () => (
       />
 
       </h2>
-    </div>
-    <Image 
-      src={IMAGES.BANNER}
-      alt="banner"
-      width={400}
-      height={400}
-    />
+    </motion.div>
+    <motion.div 
+      // style={{flex: 1}}
+      initial={{width: "100%"}}
+      exit={{width: "100%"}}
+      whileInView={{width: "70%"}}
+      transition={{...transition}}
+    >
+      <Image 
+        src={IMAGES.BANNER}
+        alt="banner"
+        width={400}
+        height={400}
+      />
+
+    </motion.div>
   </div>
 ); 
 
@@ -213,8 +253,15 @@ const Popular = () => (
     <div className={styles.popular_section}>
       <div className={styles.popular_container}>
         {
-          popular.map((item, index) => (
-            <div key={index} className={styles.popular_item}>
+          [...popular, ...popular].map((item, index) => (
+            <motion.div 
+              key={index} 
+              className={styles.popular_item}
+              initial={{opacity: 0, y: 100}}
+              whileInView={{opacity: 1, y: 0}}
+              exit={{opacity: 0, y: 100}}
+              transition={{...transition, duration: 3}}
+              >
               <Image 
                 src={item.image}
                 alt="listing"
@@ -222,7 +269,7 @@ const Popular = () => (
                 height={150}
               />
               <Features item={item}/>
-            </div>
+            </motion.div>
           ))
         }
 

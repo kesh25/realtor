@@ -1,14 +1,17 @@
 .hero {
   /* width: 100vw;  */
-  height: 70vh; 
+  /* 152036 */
+  height: 90vh; 
   background: 
-      linear-gradient(to right bottom, var(--secondary-color), var(--main-color));
+      linear-gradient(to right bottom, var(--secondary-color), var(--main-color)); 
+  /* background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABEwAAAH0AQMAAAAdbipGAAAAAXNSR0IB2cksfwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAANQTFRFFSA256ntegAAAFpJREFUeJztwTEBAAAAwqD1T20KP6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeBsPiwAB/LLtCQAAAABJRU5ErkJggg=='); */
+
       /* linear-gradient(to right top, var(--main-color), var(--secondary-color)); */
   position: relative; 
   display: flex; 
   align-items: center;
 }
-@media (max-width: 800px) {
+/* @media (max-width: 800px) {
   .hero {
     height: 60vh;
   }
@@ -17,7 +20,7 @@
   .hero {
     height: 50vh;
   }
-}
+} */
 .hero_image {
   width: 100%; 
   height: 100%; 
@@ -29,9 +32,11 @@
 }
 .hero_image img {
   width: 50%; 
-  height: 100%; 
+  height: 90%; 
   object-fit: cover;
 }
+
+
 /* hero text */
 .hero_text {
   /* m */
@@ -68,6 +73,23 @@
   background-color: transparent;
   color: var(--main-color);
 
+}
+
+@media screen and (max-width: 768px) {
+  .hero {
+    height: 50vh;
+  }
+  .hero_image img {
+    width: 100%; 
+    height: 80%; 
+     
+  }
+  .hero_text h1 {
+    font-size: 2rem; 
+  }
+  .hero_text p.para {
+    font-size: 1.2rem; 
+  }
 }
 
 /* icons */
@@ -180,7 +202,7 @@
 /* mid banner */
 .mid_banner {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 .text__banner {
@@ -201,8 +223,11 @@
 }
 .mid_banner img {
   border-radius: 1.3rem; 
-  width: 50%; 
+  /* width: 50%;  */
+  width: 100%; 
+  height: 100%; 
   object-fit: cover;
+
 }
 
 /* popular */
@@ -210,6 +235,7 @@
   display: flex; 
   width: 100%; 
   height: fit-content;
+  overflow: hidden;
 }
 .popular_container {
   display: flex; 
@@ -219,6 +245,7 @@
 .popular_item {
   flex: 1; 
   max-width: 50%;
+  min-width: calc(100%/4.5);
   margin: .5rem;  
 }
 .popular_item img {
